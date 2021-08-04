@@ -1,0 +1,14 @@
+{% extends 'inventory/base.html' %}
+{% load static %}
+
+{% block head %}
+ <link rel="stylesheet" href="{% static 'inventory/style.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <h2>This is the current ingredients on your kitchen</h2>
+        {% for item in all_ingredients %}
+            <p>{{ item.name }}</p>
+        {% endfor %}
+{% endblock %}
