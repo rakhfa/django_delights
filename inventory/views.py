@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .models import Ingredient,MenuItem,RecipeRequirement
+from .models import Ingredient,MenuItem,RecipeRequirement,Purchase
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
 from django.urls import reverse_lazy
-from .forms import IngredientForm,MenuItemForm
+from .forms import IngredientForm,MenuItemForm, RecipeForm, PurchaseForm
 
 def home_view(request):
     all_ingredients = Ingredient.objects.all()
@@ -53,6 +53,46 @@ class DeleteMenuItemView(DeleteView):
     template_name = "inventory/delete_menuitem.html"
     success_url = reverse_lazy('menuitemlist')
 
+class RecipeView(ListView):
+    model = RecipeRequirement
+    template_name = "inventory/recipes.html"
 
+
+class CreateRecipeView(CreateView):
+    model = RecipeRequirement
+    template_name = "inventory/add_recipe.html"
+    form_class = RecipeForm
+
+class UpdateRecipeView(UpdateView):
+    model = RecipeRequirement
+    template_name = "inventory/update_recipe.html"
+    form_class = RecipeForm
+
+
+class DeleteRecipeView(DeleteView):
+    model = RecipeRequirement
+    template_name = "inventory/delete_recipe.html"
+    success_url = reverse_lazy('recipelist')
+
+
+class PurchaseView(ListView):
+    model = Purchase
+    template_name = "inventory/purchase.html"
+
+class CreatePurchaseView(CreateView):
+    model = Purchase
+    template_name = "inventory/buy_now.html"
+    form_class = PurchaseForm
+
+class UpdatePurchaseView(UpdateView):
+    model = Purchase
+    template_name = "inventory/update_purchase.html"
+    form_class = PurchaseForm
+
+
+class DeleteMenuItemView(DeleteView):
+    model = Purchase
+    template_name = "inventory/delete_purchase.html"
+    success_url = reverse_lazy('purchaselist')
 
 

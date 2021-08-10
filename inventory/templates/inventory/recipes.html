@@ -1,0 +1,38 @@
+{% extends 'inventory/base.html' %}
+{% load static %}
+
+{% block head %}
+ <link rel="stylesheet" href="{% static 'inventory/style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<table>
+    <thead>
+      <tr>
+        <th> Items </th>
+        <th> ingredients </th>
+        <th> Quantity </th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for obj in object_list %}
+      <tr>
+        <td>{{obj.menu_item}}</td>
+        <td>{{obj.ingredient}}</td>
+        <td>{{obj.quantity}}</td>
+
+          <td><a href="{% url 'updaterecipe'  obj.id %}" >Edit </a></td>
+        <td><a href="{% url 'deleterecipe'  obj.id %}" >Delete </a></td>
+
+
+      </tr>
+     {% endfor %}
+    </tbody>
+
+
+ </table>
+
+{% endblock %}

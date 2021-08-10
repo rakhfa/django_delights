@@ -32,6 +32,21 @@ class RecipeRequirement(models.Model):
     ingredient = models.ForeignKey(Ingredient,on_delete=models.CASCADE)
     quantity = models.FloatField()
 
+    def get_absolute_url(self):
+        return "/recipes"
+
+    def __str__(self):
+        return self.menu_item
+
+class Purchase(models.Model):
+    menu_item=models.ForeignKey(MenuItem,on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=0)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+
+    def get_absolute_url(self):
+        return "/purchase"
 
 
 
